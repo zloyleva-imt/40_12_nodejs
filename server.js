@@ -9,7 +9,7 @@ const sqlite = require('sqlite3').verbose();
 const path = require('path');
 const bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 const dBPath = path.resolve(__dirname, 'database/store.sqlite');
@@ -70,6 +70,30 @@ app.get('/products/:id', (req, res) => {
             }
         });
     }
+});
+
+app.put('/products/:id', (req, res) => {
+    const {params : {id}} = req;
+    console.log(req.body);
+
+    let reqArray = [];
+    const {body} = req;
+    for (let prop in body) {
+        reqArray.push(`${prop} = '${body[prop]}'`)
+    }
+
+    console.log(reqArray.join(", "));
+
+    const query = `UPDATE products SET ${reqArray.join(", ")} WHERE id = ${id};`;
+    db.run(query, (err, data) => {
+        if (err) {
+            console.log('\x1b[31m', err.message);
+        }
+
+        res.json({
+            status: "updated",
+        });
+    });
 });
 
 app.post('/products', (req, res) => {
