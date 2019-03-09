@@ -1,3 +1,5 @@
+# E-store on Node.JS
+
 ### First step install docker & docker-compose
 
 ### Start DB service 
