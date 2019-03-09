@@ -13,4 +13,4 @@ connect_db: #Stop DB
 	@sudo docker-compose exec db bash
 
 delete_all: #docker stop $(docker ps -aq)
-	@docker container prune && docker image prune -a && docker volume prune
+	@sudo docker container prune && sudo docker image prune -a && sudo docker volume prune
