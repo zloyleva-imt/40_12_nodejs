@@ -24,12 +24,23 @@ sequelize
         console.error('Unable to connect to the database:', err);
     });
 
+const sync = () => {
+    return sequelize.sync({force: true});
+};
+
+sync()
+    .then(()=>console.log("DB was synced..."))
+    .catch(err=>console.log(err.message));
+
 app.get('/', (req, res) => {
     res.send("Shoes shop\n");
 });
 
 const products = require('./routes/products');
 app.use('/products', products);
+
+const cards = require('./routes/cards');
+app.use('/cards', cards);
 
 app.listen(3000, err => {
     if(err){
