@@ -24,21 +24,12 @@ sequelize
         console.error('Unable to connect to the database:', err);
     });
 
-// const dBPath = path.resolve(__dirname, 'database/store.sqlite');
-//
-// const db = new sqlite.Database(dBPath, (err) => {
-//     if(err){
-//         console.log('\x1b[31m', err.message);
-//     }
-//     console.log('\x1b[36m%s\x1b[0m', 'App was connected to DB');
-// });
-
 app.get('/', (req, res) => {
     res.send("Shoes shop\n");
 });
 
-// const products = require('./routes/products')(db);
-// app.use('/products', products);
+const products = require('./routes/products');
+app.use('/products', products);
 
 app.listen(3000, err => {
     if(err){
