@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
 
-
-// const sqlite = require('sqlite3').verbose();
-const path = require('path');
 const bodyParser = require('body-parser');
 
 // app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+const expressValidator = require('express-validator');
+app.use(expressValidator());
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('store', 'root', '123456789root', {

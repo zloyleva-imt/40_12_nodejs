@@ -76,12 +76,27 @@ exports.product_delete = (req, res) => {
 
 exports.product_new = (req, res) => {
 	
-	Product.create({...req.body})
-		.then(user => {
-			console.log(user);
-			res.json({
-				data: user,
-				status: "ok"
+	req.checkBody('price', 'Price is required').notEmpty();
+	req.checkBody('title', 'Title is required').notEmpty();
+	req.checkBody('description', 'Description is required').notEmpty();
+	req.checkBody('image', 'Image is required').notEmpty();
+	req.checkBody('amount', 'Amount is required').notEmpty();
+	
+	const errors = req.validationErrors();
+	if(errors){
+		console.log(errors);
+		return res.redirect('/products');
+	}
+	else{
+		Product.create({...req.body})
+			.then(user => {
+				console.log(user);
+				res.json({
+					data: user,
+					status: "ok"
+				});
 			});
-		})
+	}
+	
+	
 };
