@@ -77,7 +77,7 @@ exports.product_delete = (req, res) => {
 exports.product_new = (req, res) => {
 	
 	req.checkBody('price', 'Price is required').notEmpty();
-	req.checkBody('title', 'Title is required').notEmpty();
+	req.checkBody('title', 'Title is required').notEmpty().isLength({ min: 5 }).withMessage('Too short Title');
 	req.checkBody('description', 'Description is required').notEmpty();
 	req.checkBody('image', 'Image is required').notEmpty();
 	req.checkBody('amount', 'Amount is required').notEmpty();
@@ -85,7 +85,7 @@ exports.product_new = (req, res) => {
 	const errors = req.validationErrors();
 	if(errors){
 		console.log(errors);
-		return res.redirect('/products');
+		return res.status(422).json({ errors: errors });
 	}
 	else{
 		Product.create({...req.body})
