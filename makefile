@@ -14,3 +14,9 @@ connect_db: #Stop DB
 
 delete_all: #docker stop $(docker ps -aq)
 	@sudo docker container prune && sudo docker image prune -a && sudo docker volume prune
+
+create_seeder: # create seeder
+	@npx sequelize seed:generate --name $(name)
+
+refresh: #refresh DB and reSeeding
+	@npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all
