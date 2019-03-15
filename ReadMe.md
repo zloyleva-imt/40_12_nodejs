@@ -2,6 +2,11 @@
 
 ### First step install docker & docker-compose
 
+### Create ENV
+```bash
+touch .env
+```
+
 ### Start DB service 
 ```bash
 make start

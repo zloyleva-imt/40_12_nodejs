@@ -1,7 +1,7 @@
 
 
-start: #Start DB
-	@sudo docker-compose up -d
+start: #start docker container
+	@sudo docker-compose up -d && npm run dev
 
 stop: #Stop DB
 	@sudo docker-compose down
