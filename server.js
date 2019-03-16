@@ -4,6 +4,9 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+const expressValidator = require('express-validator');
+app.use(expressValidator());
+
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('store', 'root', '123456789root', {
     host: 'localhost',
