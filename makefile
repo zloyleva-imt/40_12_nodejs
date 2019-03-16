@@ -23,6 +23,9 @@ refresh: # Refresh DB
 ###################### Create someThings #######################
 ################################################################
 
+create_controller: # Create controller name=[nameController]
+	@touch controllers/$(name)Controller.js
+
 create_seeder: # Create seeder name=[nameSeeder] like demo-seed
 	@sequelize seed:generate --name $(name)
 
