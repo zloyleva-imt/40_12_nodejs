@@ -18,6 +18,13 @@ exports.products_show = (req, res) => {
     Product.findById(productId)
         .then(data => {
             console.log(JSON.stringify(data));
+
+            if(!data){
+                return res.status(404).json({
+                    error: "Product not found"
+                })
+            }
+
             res.json({
                 status: "ok",
                 data:{
@@ -38,7 +45,7 @@ exports.products_new = (req, res) => {
     const errors = req.validationErrors();
 
     if(errors){
-        return res.json({
+        return res.status(422).json({
             error: errors
         })
     }
