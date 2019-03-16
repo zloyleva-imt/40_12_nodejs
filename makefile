@@ -23,7 +23,7 @@ refresh: # Refresh DB
 ###################### Create someThings #######################
 ################################################################
 
-create_seeder: # Create seeder name=[nameSeeder]
+create_seeder: # Create seeder name=[nameSeeder] like demo-seed
 	@sequelize seed:generate --name $(name)
 
 create_model: # Create model name=[nameModel]
