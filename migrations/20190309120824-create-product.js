@@ -26,6 +26,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      views: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      orders: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
