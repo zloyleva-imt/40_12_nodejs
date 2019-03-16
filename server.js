@@ -30,5 +30,5 @@ app.listen(3000, err => {
     if(err){
         console.log('\x1b[31m', 'Error...');
     }
-    console.log('\x1b[36m%s\x1b[0m', 'App was started... on 3000 port');
+    console.log('App was started... on 3000 port');
 });
