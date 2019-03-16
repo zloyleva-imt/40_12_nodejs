@@ -18,5 +18,13 @@ delete_all: #docker stop $(docker ps -aq)
 refresh: # Refresh DB
 	@sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all
 
+
+################################################################
+###################### Create someThings #######################
+################################################################
+
 create_seeder: # Create seeder name=[nameSeeder]
 	@sequelize seed:generate --name $(name)
+
+create_model: # Create model name=[nameModel]
+	@sequelize model:generate --name $(name) --attributes name:string
